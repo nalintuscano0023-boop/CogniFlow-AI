@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusFlow - Advanced Productivity OS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app">
+        <aside class="side">
+            <div class="brand">
+                <div class="mark">FF</div>
+                <div><strong>FocusFlow</strong>
+                    <div class="mut">AI Productivity System</div>
+                </div>
+            </div>
+            <nav class="nav">
+                <button class="active" data-page="dashboard">Dashboard</button>
+                <button data-page="tasks">Tasks</button>
+                <button data-page="analytics">Analytics</button>
+                <button data-page="focus">Focus Mode</button>
+                <button data-page="assistant">AI Assistant</button>
+            </nav>
+            <div class="card">
+                <div class="mut">Daily Goal</div>
+                <h3 id="goalTxt">90 min focus</h3>
+                <div class="meter"><span id="goalFill"></span></div><small id="goalHint">0/90 completed</small>
+            </div>
+            <button id="demo" class="btn">Load Demo</button>
+        </aside>
+        <main class="main">
+            <header class="top">
+                <div>
+                    <h2 id="title" style="margin:0">Dashboard</h2>
+                    <div id="sub" class="mut">Your personal productivity cockpit.</div>
+                </div>
+                <div class="actions"><button id="startOverlay" class="btn primary">▶ Start Focus Session</button><button
+                        id="theme" class="btn" aria-label="Toggle theme">🌙</button></div>
+            </header>
+            <div class="ai-speech-bar">
+                <span>AI Speech:</span>
+                <strong id="aiSpeechText"></strong>
+            </div>
+            <section id="dashboard" class="page active">
+                <div class="g kpi">
+                    <article class="card">
+                        <div class="mut">Tasks</div>
+                        <h3 id="kTasks">0</h3>
+                    </article>
+                    <article class="card">
+                        <div class="mut">Focus Minutes</div>
+                        <h3 id="kFocus">0</h3>
+                    </article>
+                    <article class="card">
+                        <div class="mut">Productivity Score</div>
+                        <h3 id="kScore">0</h3>
+                    </article>
+                    <article class="card">
+                        <div class="mut">Streak</div>
+                        <h3 id="kStreak">0 days</h3>
+                    </article>
+                    <article class="card">
+                        <div class="mut">Predicted Completion</div>
+                        <h3 id="kPred">0%</h3>
+                    </article>
+                </div>
+                <div class="g two">
+                    <article class="card">
+                        <h3 style="margin:0 0 8px">Today's Tasks</h3>
+                        <ul id="todayList"></ul>
+                    </article>
+                    <article class="card">
+                        <h3 style="margin:0 0 8px">Deadline Pressure</h3>
+                        <div id="pressureTxt">Low</div>
+                        <div class="press"><span id="pressureFill"></span></div>
+                    </article>
+                    <article class="card">
+                        <h3 style="margin:0 0 8px">Focus Heatmap</h3>
+                        <div id="heat" class="heat"></div>
+                    </article>
+                    <article class="card">
+                        <h3 style="margin:0 0 8px">AI Recommendations</h3>
+                        <ul id="recs"></ul>
+                    </article>
+                </div>
+            </section>
+            <section id="tasks" class="page">
+                <article class="card">
+                    <h3 style="margin:0 0 8px">Smart Task Manager</h3>
+                    <form id="taskForm" class="task-form">
+                        <input id="taskTitleInput" type="text" placeholder="Task title" maxlength="120" required>
+                        <input id="taskDeadlineInput" type="date" required>
+                        <select id="taskPriorityInput">
+                            <option value="high">High</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+                        <select id="taskCategoryInput">
+                            <option value="work">Work</option>
+                            <option value="study">Study</option>
+                            <option value="health">Health</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <select id="taskRecurringInput">
+                            <option value="none">No Repeat</option>
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
+                        </select>
+                        <button class="btn primary" type="submit">+ Add Task</button>
+                    </form>
+                    <div class="row">
+                        <div class="chips">
+                            <button class="active" data-filter="all">All</button>
+                            <button data-filter="high">High</button>
+                            <button data-filter="medium">Medium</button>
+                            <button data-filter="low">Low</button>
+                            <button data-filter="work">Work</button>
+                            <button data-filter="study">Study</button>
+                            <button data-filter="done">Done</button>
+                        </div>
+                        <select id="sortBy">
+                            <option value="urgency">Sort: Urgency</option>
+                            <option value="deadline">Sort: Deadline</option>
+                            <option value="priority">Sort: Priority</option>
+                            <option value="created">Sort: Created</option>
+                        </select>
+                        <button id="autoScheduleBtn" class="btn" type="button">Auto Sort</button>
+                        <button id="clearCompletedBtn" class="btn" type="button">Clear Completed</button>
+                    </div>
+                    <ul id="taskList" class="tasks"></ul>
+                </article>
+            </section>
+            <section id="analytics" class="page">
+                <div class="g two">
+                    <article class="card">
+                        <h3 style="margin:0 0 8px">Weekly Bar Chart</h3>
+                        <div id="weeklyBars" class="chart"></div>
+                    </article>
+                    <article class="card">
+                        <h3 style="margin:0 0 8px">Completion Donut</h3>
+                        <div id="completionDonut" class="donut"></div>
+                        <p id="donutTxt" style="text-align:center"></p>
+                    </article>
+                    <article class="card">
+                        <h3 style="margin:0 0 8px">Focus Hours</h3>
+                        <div id="focusBars" class="chart"></div>
+                    </article>
+                    <article class="card">
+                        <h3 style="margin:0 0 8px">7-Week Score Trend</h3>
+                        <div id="trendBars" class="chart"></div>
+                    </article>
+                </div>
+            </section>
+            <section id="focus" class="page">
+                <article class="card">
+                    <h3 style="margin:0 0 8px">Focus Controls</h3>
+                    <div class="row"><button id="openFocus" class="btn primary">⏱ Focus</button><select
+                            id="focusTaskSelect"></select><select id="focusPreset">
+                            <option value="25-5">25/5</option>
+                            <option value="50-10">50/10</option>
+                        </select><button id="focusStartPauseBtn" class="btn">Start/Pause</button><button
+                            id="focusResetBtn" class="btn">Reset</button><button id="focusSkipBtn" class="btn">Skip
+                            Phase</button></div>
+                </article>
+            </section>
+            <section id="assistant" class="page">
+                <div class="g two">
+                    <article class="card chat">
+                        <h3 style="margin:0">AI Assistant</h3>
+                        <div id="chatMessages" class="msgs"></div>
+                        <form id="chatForm" class="row"><input id="chatInput" type="text"
+                                placeholder="add task: Write blog post" required><button class="btn primary"
+                                type="submit">Send</button></form>
+                    </article>
+                    <article class="card">
+                        <h3>Behavior Analysis</h3>
+                        <div class="bars">
+                            <div class="line"><span>Consistency</span>
+                                <div class="track">
+                                    <div id="barConsistency" class="fill"></div>
+                                </div>
+                            </div>
+                            <div class="line"><span>Focus Quality</span>
+                                <div class="track">
+                                    <div id="barFocusQuality" class="fill"></div>
+                                </div>
+                            </div>
+                            <div class="line"><span>Task Velocity</span>
+                                <div class="track">
+                                    <div id="barVelocity" class="fill"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <h4>Smart Insights</h4>
+                        <ul id="insights"></ul>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
+    <div id="overlay" class="overlay">
+        <div class="focus">
+            <div class="mut">Full-Screen Pomodoro</div>
+            <h2 id="phase">Focus Session</h2>
+            <div id="timerTxt" class="timer">25:00</div>
+            <svg viewBox="0 0 120 120" class="ring">
+                <defs>
+                    <linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#5f7bff"></stop>
+                        <stop offset="100%" stop-color="#49d6ff"></stop>
+                    </linearGradient>
+                </defs>
+                <circle cx="60" cy="60" r="54" class="bg"></circle>
+                <circle cx="60" cy="60" r="54" class="prog" id="ringProgress"></circle>
+            </svg>
+            <div class="row" style="justify-content:center;margin-top:8px"><button id="ovStart"
+                    class="btn primary">Start</button><button id="ovReset" class="btn">Reset</button><button id="ovSkip"
+                    class="btn">Skip</button><button id="ovClose" class="btn">Close</button></div>
+        </div>
+    </div>
+    <div id="toast" class="toast"><span id="toastText"></span><button id="undoBtn" class="btn">Undo</button></div>
+    <script src="script.js"></script>
+</body>
+
+</html>
