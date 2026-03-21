@@ -18,11 +18,11 @@ This project reflects a strong focus on system thinking, real world problem solv
 
 Core Features
 
->Smart Task Intelligence
->Create, manage, and organize tasks with structured   priorities and categories  
->Intelligent filtering and sorting based on urgency and deadlines  
->Recurring task automation (daily / weekly cycles)  
->Dynamic scheduling powered by custom logic  
+Smart Task Intelligence
+Create, manage, and organize tasks with structured   priorities and categories  
+Intelligent filtering and sorting based on urgency and deadlines  
+Recurring task automation (daily / weekly cycles)  
+Dynamic scheduling powered by custom logic  
 
 
 
