@@ -131,7 +131,7 @@ Demonstrates the ability to build real world scalable applications
 
 Final Note
 
-FocusFlow OS represents more than a project it showcases the ability to think beyond features and build intelligent systems that enhance human productivity.
+CogniFlow OS represents more than a project it showcases the ability to think beyond features and build intelligent systems that enhance human productivity.
 
 
 
