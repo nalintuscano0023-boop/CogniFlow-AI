@@ -34,7 +34,7 @@ Hourly focus heatmap for behavioral insights
 
 
 
-Data-Driven Analytics
+Data Driven Analytics
 Weekly productivity visualization  
 Task completion tracking with interactive charts  
 Focus hour distribution analysis  
